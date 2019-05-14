@@ -10,7 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.validation.constraints.Digits;
@@ -33,20 +32,20 @@ public class Order implements Serializable {
 
 	private Date placedAt;
 
-	@NotBlank(message = "Name is required")
-	private String name;
+	@NotBlank(message = "Delivery name is required")
+	private String deliveryName;
 
 	@NotBlank(message = "Street is required")
-	private String street;
+	private String deliveryStreet;
 
 	@NotBlank(message = "City is required")
-	private String city;
+	private String deliveryCity;
 
 	@NotBlank(message = "State is required")
-	private String state;
+	private String deliveryState;
 
 	@NotBlank(message = "Zip code is required")
-	private String zip;
+	private String deliveryZip;
 
 	@CreditCardNumber(message = "Not a valid credit card number")
 	private String ccNumber;
@@ -70,5 +69,3 @@ public class Order implements Serializable {
 	}
 
 }
-//end::allButValidation[]
-//end::all[]
