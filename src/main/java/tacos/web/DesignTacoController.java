@@ -57,8 +57,8 @@ public class DesignTacoController {
 			model.addAttribute(type.toString().toLowerCase(), filterByType(ingredients, type));
 		}
 		
-		model.addAttribute("ingredients", ingredients);
-
+		model.addAttribute("name", "hala");
+		
 		return "design";
 	}
 
