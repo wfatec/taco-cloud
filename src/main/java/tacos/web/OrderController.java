@@ -3,6 +3,7 @@ package tacos.web;
 
 import javax.validation.Valid;
 
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import tacos.Order;
+import tacos.User;
 import tacos.data.OrderRepository;
 
 @Controller
@@ -33,10 +35,15 @@ public class OrderController {
 	}
 
 	@PostMapping
-	public String processOrder(@Valid Order order, Errors errors, SessionStatus sessionStatus) {
+	public String processOrder(@Valid Order order, Errors errors,
+			SessionStatus sessionStatus,
+			@AuthenticationPrincipal User user) {
+		
 		if (errors.hasErrors()) {
 			return "orderForm";
 		}
+		
+		order.setUser(user);
 
 		orderRepo.save(order);
 		sessionStatus.setComplete();
