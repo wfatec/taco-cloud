@@ -46,7 +46,7 @@ public class DesignTacoController {
 	public Taco taco() {
 		return new Taco();
 	}
-
+	
 	@GetMapping
 	public String showDesignForm(Model model) {
 		List<Ingredient> ingredients = new ArrayList<>();
@@ -56,6 +56,8 @@ public class DesignTacoController {
 		for (Type type : types) {
 			model.addAttribute(type.toString().toLowerCase(), filterByType(ingredients, type));
 		}
+		
+		model.addAttribute("ingredients", ingredients);
 
 		return "design";
 	}
